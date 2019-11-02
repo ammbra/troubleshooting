@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-helloworld-withaccount
+  labels:
+    deploy-helloworld-withaccount: deployment
+  annotations:
+    description: Defines how to deploy helloworld
+spec:
+  selector:
+    matchLabels:
+      app: helloworld
+  replicas: 2 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      name: deploy-helloworld-withaccount
+      labels:
+        app: helloworld
+        deploy-helloworld-withaccount: pod
+    spec:
+      serviceAccountName: helloworld-service-account
+      containers:
+        - name: helloworld
+          image: helloworld:2
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ENV
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: deploy-helloworld-withaccount
+  labels:
+    deploy-helloworld-withaccount: service
+  annotations:
+    description: Exposes hello world
+spec:
+  type: NodePort
+  selector:
+    app: helloworld
+  ports:
+    - port: 8080
+      nodePort: 31112
+      targetPort: 8080
+      protocol: TCP
+---

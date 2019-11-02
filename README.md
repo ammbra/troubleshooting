@@ -32,7 +32,7 @@ kubectl apply -f install.yaml -n <namespace>
 * Patch a deployment.
 ```sh
 kubectl patch deployment deploy-helloworld -p \
-  "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}"
+  "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}" --namespace=<namespace>
 ```
 [Go back to master](https://github.com/ammbra/troubleshooting/tree/master)
 

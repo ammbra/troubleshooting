@@ -1,0 +1,28 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: helper
+spec:
+  backoffLimit: 1
+  template:
+    metadata:
+      name: helper
+    spec:
+      restartPolicy: "Never"
+      volumes:
+        - name: upload-data
+          persistentVolumeClaim:
+            claimName: upload-claim
+        - name: backup-data
+          persistentVolumeClaim:
+            claimName: backup-claim
+      containers:
+      - name:  helper
+        image: alpine:3.7
+        imagePullPolicy: Always
+        command: ["sh", "-c", "ls -l /home/projects; rm -rf /home/projects/backup/*; while [ ! -d /home/projects/backup/stop ]; do ls -l /home/projects/backup; echo Waiting for scripts to be copied; sleep 2; done; sleep 10;"]
+        volumeMounts:
+          - mountPath: /home/projects/upload
+            name: upload-data
+          - mountPath: /home/projects/backup
+            name: backup-data

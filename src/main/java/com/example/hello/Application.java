@@ -20,11 +20,6 @@ public class Application {
 
     @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
-        try {
-            Thread.sleep(20*1000);
-        } catch(InterruptedException e) {
-            LOGGER.error("Exception while starting the app : {}", e);
-        }
         return args -> {
 
             String[] beanNames = ctx.getBeanDefinitionNames();

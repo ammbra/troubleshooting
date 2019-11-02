@@ -13,7 +13,7 @@ docker build . -t helloworld:4
 
 
 ## Deploying
-* Go to /install folder and run 
+* Go to /upgrade folder and run 
 
 ```sh
 kubectl apply -f install.yaml -n <namespace>

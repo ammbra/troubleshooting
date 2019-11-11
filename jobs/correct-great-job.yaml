@@ -1,0 +1,32 @@
+kind: CronJob
+apiVersion: batch/v1beta1
+metadata:
+  name: great-helloworld-job
+  labels:
+    run: great-helloworld-job
+spec:
+  schedule: '*/1 * * * *'
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+     spec:
+       backoffLimit: 0
+       template:
+        metadata:
+          labels:
+            run: great-helloworld-job
+        spec:
+          containers:
+            - name: great-helloworld
+              image: alpine:3.7
+              args:
+                - /bin/sh
+                - -c
+                - |
+                  wget -q http://www.bbc.co.uk
+              terminationMessagePath: /dev/termination-log
+              terminationMessagePolicy: File
+              imagePullPolicy: Always
+#          restartPolicy: OnFailure
+          restartPolicy: Never
+          terminationGracePeriodSeconds: 30

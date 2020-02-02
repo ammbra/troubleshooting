@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deploy-helloworld-withaccount
+  name: helloworld-withaccount
   labels:
-    deploy-helloworld-withaccount: deployment
+    helloworld-withaccount: deployment
   annotations:
     description: Defines how to deploy helloworld
 spec:
@@ -13,10 +13,10 @@ spec:
   replicas: 2 # tells deployment to run 2 pods matching the template
   template:
     metadata:
-      name: deploy-helloworld-withaccount
+      name: helloworld-withaccount
       labels:
         app: helloworld
-        deploy-helloworld-withaccount: pod
+        helloworld-withaccount: pod
     spec:
       serviceAccountName: helloworld-service-account
       containers:
@@ -33,9 +33,9 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: deploy-helloworld-withaccount
+  name: helloworld-withaccount
   labels:
-    deploy-helloworld-withaccount: service
+    helloworld-withaccount: service
   annotations:
     description: Exposes hello world
 spec:

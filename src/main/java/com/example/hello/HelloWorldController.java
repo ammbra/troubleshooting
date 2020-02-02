@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-public class HelloController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(HelloController.class);
+public class HelloWorldController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorldController.class);
 
     @Value("${spring.location: default}")
 	String location;
     
     @RequestMapping("/")
     public String index() {
-            return String.format("Greetings from Spring Boot! Welcome from location %s", location);
+        return String.format("Greetings from Spring Boot! Welcome from location %s", location);
     }
 
 }

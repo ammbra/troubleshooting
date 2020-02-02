@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deploy-helloworld-accessibility
+  name: helloworld-accessibility
   labels:
-    deploy-helloworld-accessibility: deployment
+    helloworld-accessibility: deployment
   annotations:
     description: Defines how to deploy helloworld
 spec:
@@ -13,10 +13,10 @@ spec:
   replicas: 2 # tells deployment to run 2 pods matching the template
   template:
     metadata:
-      name: deploy-helloworld-accessibility
+      name: helloworld-accessibility
       labels:
         app: helloworld
-        deploy-helloworld-accessibility: pod
+        helloworld-accessibility: pod
     spec:
       serviceAccountName: custom-service-account
       containers:
@@ -35,9 +35,9 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: deploy-helloworld-accessibility
+  name: helloworld-accessibility
   labels:
-    deploy-helloworld-accessibility: service
+    helloworld-accessibility: service
   annotations:
     description: Exposes hello world
 spec:
@@ -46,6 +46,6 @@ spec:
     app: helloworld
   ports:
     - port: 8080
-      nodePort: 30113
+      nodePort: 31113
       targetPort: 8080
       protocol: TCP

@@ -20,18 +20,18 @@ kubectl apply -f install.yaml -n <namespace>
 ```
 * Set the image to version 4
 ```sh
-  kubectl set image deployment/deploy-helloworld helloworld=helloworld:4 --record --namespace=<namespace>
+  kubectl set image deployment/helloworld-upgrade helloworld=helloworld:4 --record --namespace=<namespace>
 ```
 
 * Modify a bit the docker file and build it again with version 4. Perform a rollout restart.
 ```sh
  #starting with version 1.15
- kubectl rollout restart deploy deploy-helloworld --namespace=<namespace>
+ kubectl rollout restart deploy helloworld-upgrade --namespace=<namespace>
 ```
 
 * Patch a deployment.
 ```sh
-kubectl patch deployment deploy-helloworld -p \
+kubectl patch deployment helloworld-upgrade -p \
   "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}" --namespace=<namespace>
 ```
 [Go back to master](https://github.com/ammbra/troubleshooting/tree/master)

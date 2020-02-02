@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deploy-helloworld
+  name: helloworld-upgrade
   labels:
-    deploy-helloworld: deployment
+    helloworld-upgrade: deployment
   annotations:
     description: Defines how to deploy helloworld
 spec:
@@ -20,12 +20,11 @@ spec:
   progressDeadlineSeconds: 600
   template:
     metadata:
-      name: deploy-helloworld
+      name: helloworld-upgrade
       labels:
         app: helloworld
-        deploy-helloworld: pod
+        helloworld-upgrade: pod
     spec:
-      serviceAccountName: custom-service-account
       containers:
         - name: helloworld
           image: helloworld:3
@@ -57,9 +56,9 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: deploy-helloworld
+  name: helloworld-upgrade
   labels:
-    deploy-helloworld: deployment
+    helloworld-upgrade: deployment
   annotations:
     description: Exposes hello world
 spec:

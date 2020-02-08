@@ -22,8 +22,15 @@ spec:
         - name: helloworld
           image: helloworld:3
           ports:
+            - containerPort: 4004
+              name: "jvm-debug"
             - containerPort: 8080
+              name: "running-port"
           env:
+            - name: ENABLE_DEBUG
+              value: "true"
+            - name: SIMULATE_LONGER_STARTUP
+              value: "true"
             - name: ENV
               valueFrom:
                 fieldRef:

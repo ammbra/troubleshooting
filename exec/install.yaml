@@ -18,7 +18,6 @@ spec:
         app: helloworld
         helloworld-accessibility: pod
     spec:
-      serviceAccountName: custom-service-account
       containers:
         - name: helloworld
           image: helloworld:3

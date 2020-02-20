@@ -1,10 +1,24 @@
-# Troubleshooting talk samples
+# Intructions to Run this sample
+**Disclaimer**: Docker Desktop was used for this sample. 
+Push the image (docker push command) if you are using DockerHub or a private registry.
+In case that you are using private registry, create a registry pull secret and update the **install.yaml**.
 
-* [Go to health sample](https://github.com/ammbra/troubleshooting/tree/health)
-* [Go to permissions sample](https://github.com/ammbra/troubleshooting/tree/permissions)
-* [Go to shell debugging sample](https://github.com/ammbra/troubleshooting/tree/shell-debug)
-* [Go to replace images sample](https://github.com/ammbra/troubleshooting/tree/replace-images)
-* [Go to volumes sample](https://github.com/ammbra/troubleshooting/tree/volumes)
-* [Go to jobs sample](https://github.com/ammbra/troubleshooting/tree/jobs)
+## Docker image
 
+```sh
+docker build . -t helloworld:1
+#optionally, run locally the image
+#docker run --rm -p8080:8080 -e ENV=docker --user $(id -u) helloworld:3
+```
+
+
+## Deploying
+* Go to /disruptions folder and run 
+
+```sh
+kubectl apply -f install.yaml -n <namespace>
+kubectl apply -f pdb.yaml -n <namespace>
+```
+
+[Go back to master](https://github.com/ammbra/troubleshooting/tree/master)
 

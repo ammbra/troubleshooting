@@ -21,7 +21,7 @@ spec:
       serviceAccountName: helloworld-service-account
       containers:
         - name: helloworld
-          image: helloworld:2
+          image: helloworld:1
           ports:
             - containerPort: 8080
           env:

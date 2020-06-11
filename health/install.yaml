@@ -35,7 +35,7 @@ spec:
                   fieldPath: metadata.namespace
           readinessProbe:
             tcpSocket:
-              port: 8080
+              port: running-port
             initialDelaySeconds: 5
             timeoutSeconds: 30
             periodSeconds: 2
@@ -43,11 +43,17 @@ spec:
           livenessProbe:
             httpGet:
               path: /actuator/health
-              port: 8080
+              port: running-port
             initialDelaySeconds: 30
             timeoutSeconds: 2
             periodSeconds: 8
             failureThreshold: 3
+          startupProbe:
+            httpGet:
+              path: /actuator/health
+              port: running-port
+            failureThreshold: 30
+            periodSeconds: 10
 ---
 kind: Service
 apiVersion: v1

@@ -5,8 +5,17 @@
 #kubectl config use-context managed-context
 #kubectl --context=managed-context get pods
 
+####service account troubleshooting
+kubectl apply -f install.yaml -n dev
+kubectl describe deployment -n dev
+kubectl rollout status deployment/helloworld-withaccount -n dev
+kubectl apply -f role-helloworld-serviceccount.yaml -n dev
+kubectl apply -f role-binding-deployment-serviceaccount.yaml -n dev
+kubectl apply -f helloworld-serviceaccount.yaml -n dev
+kubectl rollout restart deployment/helloworld-withaccount -n dev
+
+####user creation
 kubectl create -f role-deployment-viewer.yaml
-kubectl create serviceaccount helloworld-service-account --namespace=dev
 kubectl create -f role-binding-deployment-viewer.yaml
 
 

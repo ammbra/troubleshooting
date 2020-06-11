@@ -1,0 +1,8 @@
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: deployment-creator
+rules:
+  - apiGroups: ["core, apps, extensions"] # "" indicates the core API group
+    resources: ["pods, deployments, rs"]
+    verbs: ["get", "list", "watch", "create", "update", "patch"]
